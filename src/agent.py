@@ -1,8 +1,10 @@
 # src/agent.py
 import os
+from dotenv import load_dotenv
+load_dotenv()
 # Kích hoạt MONITORING (LangSmith)
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_API_KEY"] = "ls__..." # Key của bạn
+os.environ["LANGCHAIN_TRACING_V2"] = os.getenv("LANGCHAIN_TRACING_V2")
+os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
 
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
