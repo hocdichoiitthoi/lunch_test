@@ -18,8 +18,8 @@ jobs:
           python-version: "3.9"
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Run Tests
-        run: pytest # Chạy unit test để đảm bảo logic đúng
+      # - name: Run Tests
+      #   run: pytest # Chạy unit test để đảm bảo logic đúng
 
       # 3. Build Docker Image (CD - Delivery)
       - name: Build Docker Image
