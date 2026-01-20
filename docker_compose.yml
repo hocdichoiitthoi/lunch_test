@@ -1,0 +1,10 @@
+services:
+  ai-agent:
+    image: my-ai-agent:v1
+    ports:
+      - "8000:8000"
+    deploy:
+      replicas: 2          # Chạy 2 bản sao cùng lúc
+      update_config:
+        order: start-first # Khởi động container mới TRƯỚC khi tắt container cũ
+        failure_action: rollback # Nếu bản mới lỗi, tự quay về bản cũ

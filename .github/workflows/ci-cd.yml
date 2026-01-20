@@ -1,0 +1,31 @@
+name: LunchMoney AI CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Lấy code về
+      - uses: actions/checkout@v3
+
+      # 2. Cài Python & Test (CI)
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run Tests
+        run: pytest # Chạy unit test để đảm bảo logic đúng
+
+      # 3. Build Docker Image (CD - Delivery)
+      - name: Build Docker Image
+        run: docker build -t my-ai-agent:v1 .
+
+      # 4. (Giả lập) Deploy lên Server
+      # Ở bước này, thực tế sẽ SSH vào server và chạy lệnh update
+      - name: Deploy to Production
+        run: echo "Deploying to AWS/GCP..."
